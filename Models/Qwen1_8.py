@@ -6,6 +6,7 @@ class Qwen1_8:
     def __init__(self, quantize_weights=False):
         # https://huggingface.co/docs/peft/en/developer_guides/quantization
         # No support for MacOS Quantization - https://pypi.org/project/bitsandbytes/
+        # EndOfToken/PadToken - https://qwen.readthedocs.io/en/latest/getting_started/concepts.html
         quantization_config = None
         if quantize_weights:
             quantization_config = BitsAndBytesConfig(load_in_4bit = True,
@@ -18,7 +19,8 @@ class Qwen1_8:
                                                      dtype = "auto")
         self.model = prepare_model_for_kbit_training(model)
         self.tokenizer = AutoTokenizer.from_pretrained(self.name, trust_remote_code = True)
-        self.tokenizer.pad_token = self.tokenizer.eos_token
+        self.tokenizer.pad_token = "<|endoftext|>"
+        self.tokenizer.eos_token = "<|im_end|>"
         self.tokenizer.padding_side = "right" 
         print("Model Initialized.")
     
