@@ -12,14 +12,14 @@ echo "Partition: $SLURM_JOB_PARTITION"
 echo "==============================================================="
 
 echo "Activating Python virtual environment..."
-source miniLM-LoRA/lora_env/bin/activate
+source /home/e/e0958171/miniLM-LoRA/lora_env/bin/activate
 
-PROJECT_DIR="miniLM-LoRA"
+PROJECT_DIR="/home/e/e0958171/miniLM-LoRA"
 cd $PROJECT_DIR
 echo "Current directory: $(pwd)"
 
 echo "Starting LoRA training..."
-python main.py
+python lora_main.py
 
 echo "==============================================================="
 echo "Job finished successfully!"
