@@ -2,6 +2,8 @@ import torch
 from peft import LoraConfig
 from trl import SFTTrainer, SFTConfig
 
+DIR = "/home/e/e0958171/miniLM-LoRA"
+
 class LoRA:
     def __init__(self, r = 16, lora_alpha = 32, lora_dropout = 0.5):
         # https://huggingface.co/docs/peft/en/developer_guides/quantization
@@ -22,7 +24,7 @@ class LoRA:
             peft_config = self.config,
             processing_class = model.tokenizer,
             args = SFTConfig(
-                output_dir = f"./results/{model.name}",
+                output_dir = f"{DIR}/SFT/LoRA/{model.name}",
                 max_length = 512,
                 per_device_train_batch_size = 1,
                 gradient_accumulation_steps = 8,
