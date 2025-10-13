@@ -20,17 +20,16 @@ class LoRA:
         trainer = SFTTrainer(
             model = model.model,
             train_dataset = dataset,
-            # dataset_text_field = 'Pair',
             peft_config = self.config,
             processing_class = model.tokenizer,
             args = SFTConfig(
                 output_dir = f"{DIR}/SFT/LoRA/{model.name}",
                 max_length = 512,
-                per_device_train_batch_size = 1,
+                per_device_train_batch_size = 16,
                 gradient_accumulation_steps = 8,
-                max_steps = 100,
                 learning_rate = 2e-4,
                 logging_steps = 10,
+                num_train_epochs = 3
             )
         )
         trainer.train()
