@@ -29,7 +29,7 @@ def evaluate(model, prompt_input, prompt_output, lora=False):
         )
         lora_request = LoRARequest(lora_name="qwen-sft",
                                 lora_int_id=1,
-                                lora_path="/home/e/e0958171/miniLM-LoRA/SFT/LoRA/Qwen/Qwen-1_8B/checkpoint-100"
+                                lora_path="/home/e/e0958171/miniLM-LoRA/SFT/LoRA/Qwen/Qwen-1_8B/checkpoint-84"
         )
         outputs = llm.generate(prompt_input, 
                                sampling_params,

@@ -16,7 +16,8 @@ class Qwen1_8:
         model = AutoModelForCausalLM.from_pretrained(self.name, 
                                                      quantization_config = quantization_config, 
                                                      trust_remote_code = True, 
-                                                     dtype = "auto")
+                                                     dtype='auto')
+                
         self.model = prepare_model_for_kbit_training(model)
         self.tokenizer = AutoTokenizer.from_pretrained(self.name, trust_remote_code = True)
         self.tokenizer.pad_token = "<|endoftext|>"
